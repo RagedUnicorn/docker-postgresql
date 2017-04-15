@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgresql:
+    build: .
+    image: com.ragedunicorn/postgresql:1.0-stable
+    volumes:
+      - postgresql_data:/var/lib/postgresql
+    expose:
+      - "5432"
+    labels:
+      com.ragedunicorn.postgresql.environment: "prod"
+      com.ragedunicorn.postgresql.description: "PostgreSQL"
+volumes:
+  postgresql_data: {}

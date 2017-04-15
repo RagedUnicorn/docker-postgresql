@@ -1,0 +1,2 @@
+CREATE USER {{user}} WITH PASSWORD '{{password}}';
+AlTER USER {{user}} CREATEDB SUPERUSER;

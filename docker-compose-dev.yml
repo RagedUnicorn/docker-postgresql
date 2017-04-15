@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgresql:
+    build: .
+    image: com.ragedunicorn/postgresql:1.0-dev
+    volumes:
+      - postgresql_data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash
+    labels:
+      com.ragedunicorn.postgresql.environment: "dev"
+      com.ragedunicorn.postgresql.description: "PostgreSQL"
+volumes:
+  postgresql_data: {}
