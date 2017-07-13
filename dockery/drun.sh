@@ -25,11 +25,10 @@ if [ $? -eq 0 ]; then
   docker start "${DOCKER_POSTGRESQL_NAME}"
 else
   ## run image:
-  # -p expose port
   # -v mount volume
   # -d run in detached mode
-  # -d run in detached mode
   # -i Keep STDIN open even if not attached
+  # -t Allocate a pseudo-tty
   # --name define a name for the container(optional)
   DOCKER_POSTGRESQL_ID=$(docker run \
   -v postgresql_data:/var/lib/postgresql \
