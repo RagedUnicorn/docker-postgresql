@@ -5,8 +5,10 @@
 # abort when trying to use unset variable
 set -o nounset
 
+WD="${PWD}"
+
 # variable setup
-DOCKER_POSTGRESQL_TAG="com.ragedunicorn/postgresql"
+DOCKER_POSTGRESQL_TAG="ragedunicorn/postgresql"
 DOCKER_POSTGRESQL_NAME="postgresql"
 DOCKER_POSTGRESQL_DATA_VOLUME="postgresql_data"
 
@@ -28,3 +30,5 @@ else
   echo "$(date) [INFO]: Creating new volume: ${DOCKER_POSTGRESQL_DATA_VOLUME}"
   docker volume create --name "${DOCKER_POSTGRESQL_DATA_VOLUME}" > /dev/null
 fi
+
+cd "${WD}"

@@ -7,6 +7,8 @@
 # abort when trying to use unset variable
 set -o nounset
 
+WD="${PWD}"
+
 # variable setup
 DOCKER_POSTGRESQL_NAME="postgresql"
 
@@ -24,3 +26,5 @@ if [ $? -eq 0 ]; then
 else
   echo "$(date) [INFO]: No existing container with name: ${DOCKER_POSTGRESQL_NAME} found"
 fi
+
+cd "${WD}"

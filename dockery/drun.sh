@@ -5,8 +5,10 @@
 # abort when trying to use unset variable
 set -o nounset
 
+WD="${PWD}"
+
 # variable setup
-DOCKER_POSTGRESQL_TAG="com.ragedunicorn/postgresql"
+DOCKER_POSTGRESQL_TAG="ragedunicorn/postgresql"
 DOCKER_POSTGRESQL_NAME="postgresql"
 DOCKER_POSTGRESQL_DATA_VOLUME="postgresql_data"
 DOCKER_POSTGRESQL_ID=0
@@ -23,7 +25,11 @@ if [ $? -eq 0 ]; then
   docker start "${DOCKER_POSTGRESQL_NAME}"
 else
   ## run image:
+  # -p expose port
+  # -v mount volume
   # -d run in detached mode
+  # -d run in detached mode
+  # -i Keep STDIN open even if not attached
   # --name define a name for the container(optional)
   DOCKER_POSTGRESQL_ID=$(docker run \
   -v postgresql_data:/var/lib/postgresql \
@@ -38,3 +44,5 @@ if [ $? -eq 0 ]; then
 else
   echo "$(date) [ERROR]: Failed to start container - ${DOCKER_POSTGRESQL_NAME}"
 fi
+
+cd "${WD}"

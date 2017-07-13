@@ -5,6 +5,8 @@
 # abort when trying to use unset variable
 set -o nounset
 
+WD="${PWD}"
+
 # variable setup
 DOCKER_POSTGRESQL_NAME="postgresql"
 
@@ -15,3 +17,5 @@ cd "${SCRIPTPATH}"
 echo "$(date) [INFO]: attaching to container ${DOCKER_POSTGRESQL_NAME}. To detach from the container use Ctrl-p Ctrl-q"
 # attach to container
 docker attach "${DOCKER_POSTGRESQL_NAME}"
+
+cd "${WD}"
