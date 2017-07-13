@@ -9,7 +9,7 @@ services:
       - "5432:5432"
     stdin_open: true
     tty: true
-    entrypoint: /bin/bash
+    entrypoint: /bin/sh
     labels:
       com.ragedunicorn.postgresql.environment: "dev"
       com.ragedunicorn.postgresql.description: "PostgreSQL"
