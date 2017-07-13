@@ -2,7 +2,7 @@ version: '3'
 services:
   postgresql:
     build: .
-    image: com.ragedunicorn/postgresql:1.0-stable
+    image: ragedunicorn/postgresql:1.0.0-stable
     volumes:
       - postgresql_data:/var/lib/postgresql
     expose:
