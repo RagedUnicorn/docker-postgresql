@@ -1,6 +1,6 @@
 # docker-postgresql
 
-> A docker base to build a container for PostgreSQL based on Ubuntu
+> A docker base to build a container for PostgreSQL based on Alpine
 
 This container is intended to build a base for providing a database to an application stack.
 
@@ -22,6 +22,39 @@ To stop all services from the docker-compose file
 ```
 docker-compose down
 ```
+
+### Creating a stack
+
+To create a stack the specific `docker-compose.stack.yml` file can be used. It requires that you already built the image that is consumed by the stack or that it is available in a reachable docker repository.
+
+```
+docker-compose build --no-cache
+```
+
+**Note:** You will get a warning that external secrets are not supported by docker-compose if you try to use this file with docker-compose.
+
+#### Join a swarm
+
+```
+docker swarm init
+```
+
+#### Create secrets
+```
+echo "app_user" | docker secret create com.ragedunicorn.postgresql.app_user -
+echo "app_user_password" | docker secret create com.ragedunicorn.postgresql.app_user_password -
+```
+
+#### Deploy stack
+```
+docker stack deploy --compose-file=docker-compose.stack.yml [stackname]
+```
+
+For a production deployment a stack should be deployed. The secret will then be taken into account and postgresql will be setup accordingly. The new app user will be configured for external access to the database.
+
+## Dockery
+
+In the dockery folder are some scripts that help out avoiding retyping long docker commands but are mostly intended for playing around with the container. For production use docker-compose or docker stack should be used.
 
 ## Dockery
 
@@ -66,19 +99,19 @@ First time starting up the container a user based on the values of `POSTGRESQL_A
 
 ## Development
 
-To debug the container and get more insight into the container use the `docker-compose-dev.yml`
+To debug the container and get more insight into the container use the `docker-compose.dev.yml`
 configuration. This will also allow external clients to connect to the database. By default the port `5432` will be publicly exposed.
 
 ```
-docker-compose -f docker-compose-dev.yml up -d
+docker-compose -f docker-compose.dev.yml up -d
 ```
 
-By default the launchscript `/docker-entrypoint.sh` will not be used to start the PostgreSQL process. Instead the container will be setup to keep `stdin_open` open and allocating a pseudo `tty`. This allows for connecting to a shell and work on the container. PostgreSQL itself can be started with `./docker-entrypoint.sh`.
+By default the launchscript `/docker-entrypoint.sh` will not be used to start the PostgreSQL process. Instead the container will be setup to keep `stdin_open` open and allocating a pseudo `tty`. This allows for connecting to a shell and work on the container. PostgreSQL itself can be started with `./docker-entrypoint.sh`. Additionaly the PostgreSQL Port `5432` will be exposed to the outside of the container. This allows for easy testing. The production configuration will expose its port only to other linked containers.
 
 ## Links
 
-Ubuntu packages database
-- http://packages.ubuntu.com/
+Alpine packages database
+- https://pkgs.alpinelinux.org/packages
 
 ## License
 
