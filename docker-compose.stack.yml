@@ -1,14 +1,21 @@
 version: '3.3'
 services:
   postgresql:
-    build: .
     image: ragedunicorn/postgresql:1.0.0-stable
     volumes:
       - postgresql_data:/var/lib/postgresql
-    expose:
-      - "5432"
+    secrets:
+      - com.ragedunicorn.postgresql.app_user
+      - com.ragedunicorn.postgresql.app_user_password
+    ports:
+      - "5432:5432"
     labels:
       com.ragedunicorn.postgresql.environment: "prod"
       com.ragedunicorn.postgresql.description: "PostgreSQL"
 volumes:
   postgresql_data: {}
+secrets:
+  com.ragedunicorn.postgresql.app_user:
+    external: true
+  com.ragedunicorn.postgresql.app_user_password:
+    external: true

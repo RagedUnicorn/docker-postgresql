@@ -5,6 +5,9 @@
 # abort when trying to use unset variable
 set -o nounset
 
+postgresql_app_user="/run/secrets/com.ragedunicorn.postgresql.app_user"
+postgresql_app_user_password="/run/secrets/com.ragedunicorn.postgresql.app_user_password"
+
 function create_data_dir {
   echo "$(date) [INFO]: Creating data directory ${POSTGRESQL_DATA_DIR} and setting permissions"
   mkdir -p "${POSTGRESQL_DATA_DIR}"
@@ -23,11 +26,25 @@ function init {
   if [ ! -s "${POSTGRESQL_DATA_DIR}/PG_VERSION" ]; then
     echo "$(date) [INFO]: First time setup - running init script"
 
+    if [ -f "${postgresql_app_user}" ] && [ -f "${postgresql_app_user_password}" ]; then
+      echo "$(date) [INFO]: Found docker secrets - using secrets to setup postgresql"
+
+      postgresql_app_user="$(cat ${postgresql_app_user})"
+      postgresql_app_user_password="$(cat ${postgresql_app_user_password})"
+    else
+      echo "$(date) [INFO]: No docker secrets found - using environment variables"
+      postgresql_app_user="${POSTGRESQL_APP_USER}"
+      postgresql_app_user_password="${POSTGRESQL_APP_PASSWORD}"
+
+      unset "${POSTGRESQL_APP_USER}"
+      unset "${POSTGRESQL_APP_PASSWORD}"
+    fi
+
     su -c "initdb --pgdata=${POSTGRESQL_DATA_DIR} --username=${POSTGRESQL_USER}" -s /bin/sh "${POSTGRESQL_USER}"
 
     # allow all users that are able to authenticate by password to connect
     { echo; echo "host all all 0.0.0.0/0 md5"; } >> "${POSTGRESQL_DATA_DIR}/pg_hba.conf"
-    # allow postgres user only to login from localhost but without password
+    # allow postgres user only to login from localhost and without password
     { echo; echo "host all ${POSTGRESQL_USER} localhost trust"; } >> "${POSTGRESQL_DATA_DIR}/pg_hba.conf"
 
     # do not listen to external connections during setup. This helps while orchestarting
@@ -39,8 +56,8 @@ function init {
 
     echo "$(date) [INFO]: Setup app user"
     # setup default app-user
-    sed -e "s/{{password}}/${POSTGRESQL_APP_PASSWORD}/g" \
-      -e "s/{{user}}/${POSTGRESQL_APP_USER}/g" /home/user.sql | psql -U ${POSTGRESQL_USER}
+    sed -e "s/{{password}}/${postgresql_app_user_password}/g" \
+      -e "s/{{user}}/${postgresql_app_user}/g" /home/user.sql | psql -U ${POSTGRESQL_USER}
 
     sed -ri 's/#(listen_addresses) = .*$/\1 = '\''*'\''/' /var/lib/postgresql/data/postgresql.conf
 
