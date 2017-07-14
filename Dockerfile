@@ -52,5 +52,4 @@ EXPOSE 5432
 
 VOLUME ["${POSTGRESQL_DATA_DIR}"]
 
-#CMD ["/bin/sh"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
