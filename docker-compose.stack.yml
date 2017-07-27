@@ -7,8 +7,6 @@ services:
     secrets:
       - com.ragedunicorn.postgresql.app_user
       - com.ragedunicorn.postgresql.app_user_password
-    ports:
-      - "5432:5432"
     labels:
       com.ragedunicorn.postgresql.environment: "prod"
       com.ragedunicorn.postgresql.description: "PostgreSQL"
