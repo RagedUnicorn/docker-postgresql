@@ -2,7 +2,7 @@ version: '3.3'
 services:
   postgresql:
     build: .
-    image: ragedunicorn/postgresql:1.0.1-dev
+    image: ragedunicorn/postgresql:1.0.2-dev
     volumes:
       - postgresql_data:/var/lib/postgresql/data
     ports:
