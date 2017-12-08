@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gmail.com>"
 
@@ -10,7 +10,7 @@ LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gm
 
 # software versions
 ENV \
-  POSTGRESQL_VERSION=9.6.5-r0 \
+  POSTGRESQL_VERSION=10.1-r1 \
   SU_EXEC_VERSION=0.2-r0
 
 ENV \
