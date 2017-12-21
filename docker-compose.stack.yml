@@ -7,6 +7,11 @@ services:
     secrets:
       - com.ragedunicorn.postgresql.app_user
       - com.ragedunicorn.postgresql.app_user_password
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
     labels:
       com.ragedunicorn.postgresql.environment: "prod"
       com.ragedunicorn.postgresql.description: "PostgreSQL"
