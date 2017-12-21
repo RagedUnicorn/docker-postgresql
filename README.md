@@ -98,9 +98,9 @@ First time starting up the container a user based on the values of `POSTGRESQL_A
 
 ## Healthcheck
 
-The production image supports a simple healthcheck whether the container port is reachable. This can be configured inside `docker-compose.yml`
+The production and the stack image supports a simple healthcheck whether the container is healthy or not. This can be configured inside `docker-compose.yml` or `docker-compose.stack.yml`
 
-Containers that depend on this container can make sure that it is up and running before starting up themselves.
+Containers that depend on this container can make sure that this container is up and running before starting up themselves.
 
 ```
 depends_on:
