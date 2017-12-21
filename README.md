@@ -96,6 +96,19 @@ sh dockery/dstop.sh
 
 First time starting up the container a user based on the values of `POSTGRESQL_APP_USER` and `POSTGRESQL_APP_PASSWORD` environmental values is created. This user is also allowed to make external connections and can be used by other services to interact with the database. To modify the setup of this user have a look into `conf/user.sql`.
 
+## Healthcheck
+
+The production image supports a simple healthcheck whether the container port is reachable. This can be configured inside `docker-compose.yml`
+
+Containers that depend on this container can make sure that it is up and running before starting up themselves.
+
+```
+depends_on:
+  postgresql:
+    condition: service_healthy
+```
+
+This will prevent the depending container from starting up until this service is in a healthy state.
 
 ## Development
 
