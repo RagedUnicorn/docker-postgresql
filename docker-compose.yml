@@ -2,7 +2,7 @@ version: '3.4'
 services:
   postgresql:
     build: .
-    image: ragedunicorn/postgresql:1.0.3-stable
+    image: ragedunicorn/postgresql:1.0.4-stable
     volumes:
       - postgresql_data:/var/lib/postgresql/data
     expose:
