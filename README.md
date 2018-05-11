@@ -1,8 +1,14 @@
 # docker-postgresql
 
-> A docker base to build a container for PostgreSQL based on Alpine
+> A docker base image to build a container for PostgreSQL based on Alpine
 
-This container is intended to build a base for providing a database to an application stack.
+This image is intended to build a base for providing a database to an application stack.
+
+## Version
+
+* PostgreSQL 10
+
+## Using the image
 
 ### Start container
 
