@@ -10,7 +10,7 @@ LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gm
 
 # software versions
 ENV \
-  POSTGRESQL_VERSION=10.1-r1 \
+  POSTGRESQL_VERSION=10.3-r0 \
   SU_EXEC_VERSION=0.2-r0
 
 ENV \
