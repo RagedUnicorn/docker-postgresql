@@ -2,8 +2,7 @@
 # @author Michael Wiesendanger <michael.wiesendanger@gmail.com>
 # @description build script for docker-postgresql container
 
-# abort when trying to use unset variable
-set -o nounset
+set -euo pipefail
 
 WD="${PWD}"
 

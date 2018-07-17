@@ -2,8 +2,7 @@
 # @author Michael Wiesendanger <michael.wiesendanger@gmail.com>
 # @description launch script for postgresql
 
-# abort when trying to use unset variable
-set -o nounset
+set -euo pipefail
 
 postgresql_app_user="/run/secrets/com.ragedunicorn.postgresql.app_user"
 postgresql_app_user_password="/run/secrets/com.ragedunicorn.postgresql.app_user_password"

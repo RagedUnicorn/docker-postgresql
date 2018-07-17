@@ -4,8 +4,7 @@
 # Does not delete other containers that where built from the dockerfile. Only the
 # one named tomcat6
 
-# abort when trying to use unset variable
-set -o nounset
+set -euo pipefail
 
 WD="${PWD}"
 
