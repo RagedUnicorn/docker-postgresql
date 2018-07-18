@@ -41,11 +41,15 @@ RUN set -ex; \
 # add init scripts for postgresql
 COPY config/user.sql /home/user.sql
 
+# add healthcheck script
+COPY docker-healthcheck.sh /
+
 # add launch script
 COPY docker-entrypoint.sh /
 
 RUN \
-  chmod 755 /docker-entrypoint.sh
+  chmod 755 /docker-entrypoint.sh && \
+  chmod 755 docker-healthcheck.sh
 
 EXPOSE 5432
 

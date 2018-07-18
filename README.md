@@ -106,7 +106,6 @@ First time starting up the container a user based on the values of `POSTGRESQL_A
 
 The production and the stack image supports a simple healthcheck whether the container is healthy or not. This can be configured inside `docker-compose.yml` or `docker-compose.stack.yml`
 
-
 ## Test
 
 To do basic tests of the structure of the container use the `docker-compose.test.yml` file.
