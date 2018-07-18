@@ -39,7 +39,7 @@ RUN set -ex; \
   chown -R "${POSTGRESQL_USER}":"${POSTGRESQL_GROUP}" "${POSTGRESQL_DATA_DIR}"
 
 # add init scripts for postgresql
-COPY conf/user.sql /home/user.sql
+COPY config/user.sql /home/user.sql
 
 # add launch script
 COPY docker-entrypoint.sh /
