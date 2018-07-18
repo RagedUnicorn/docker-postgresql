@@ -1,0 +1,13 @@
+schemaVersion: 2.0.0
+
+commandTests:
+- name: 'su_exec_installation'
+  command: "which"
+  args: ["su-exec"]
+  expectedOutput: ["/sbin/su-exec"]
+  exitCode: 0
+- name: 'psql_client_version'
+  command: "psql"
+  args: ["-V"]
+  expectedOutput: ["psql \\(PostgreSQL\\) 10.4"]
+  exitCode: 0

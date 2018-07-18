@@ -1,0 +1,24 @@
+schemaVersion: 2.0.0
+
+metadataTest:
+  env:
+    - key: 'POSTGRESQL_USER'
+      value: 'postgres'
+    - key: 'POSTGRESQL_GROUP'
+      value: 'postgres'
+    - key: 'POSTGRESQL_APP_USER'
+      value: 'app'
+    - key: 'POSTGRESQL_DATA_DIR'
+      value: '/var/lib/postgresql/data'
+    - key: 'POSTGRESQL_RUN_DIR'
+      value: '/run/postgresql'
+    - key: 'POSTGRES_HOME'
+      value: '/var/lib/postgresql'
+    - key: 'PGDATA'
+      value: '/var/lib/postgresql/data'
+  labels:
+    - key: 'com.ragedunicorn.maintainer'
+      value: 'Michael Wiesendanger <michael.wiesendanger@gmail.com>'
+  exposedPorts: ["5432"]
+  volumes: ["/var/lib/postgresql/data"]
+  entrypoint: ["/docker-entrypoint.sh"]

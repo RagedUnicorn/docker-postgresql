@@ -1,0 +1,11 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+- name: 'user_sql'
+  path: '/home/user.sql'
+  shouldExist: true
+  permissions: '-rwxr-xr-x'
+- name: 'docker_entrypoint'
+  path: '/docker-entrypoint.sh'
+  shouldExist: true
+  permissions: '-rwxr-xr-x'
