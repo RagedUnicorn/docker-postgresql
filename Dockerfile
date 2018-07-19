@@ -8,16 +8,22 @@ LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gm
 #  / ____/ /_/ /___/ // / / /_/ / _, _/ /___ ___/ / /_/ / / /___
 # /_/    \____//____//_/  \____/_/ |_/_____//____/\___\_\/_____/
 
+# image args
+ARG POSTGRESQL_USER=postgres
+ARG POSTGRESQL_GROUP=postgres
+ARG POSTGRESQL_APP_USER=app
+ARG POSTGRESQL_APP_PASSWORD=app
+
 # software versions
 ENV \
   POSTGRESQL_VERSION=10.4-r0 \
   SU_EXEC_VERSION=0.2-r0
 
 ENV \
-  POSTGRESQL_USER=postgres \
-  POSTGRESQL_GROUP=postgres \
-  POSTGRESQL_APP_USER=app \
-  POSTGRESQL_APP_PASSWORD=app \
+  POSTGRESQL_USER="${POSTGRESQL_USER}" \
+  POSTGRESQL_GROUP="${POSTGRESQL_GROUP}" \
+  POSTGRESQL_APP_USER="${POSTGRESQL_APP_USER}" \
+  POSTGRESQL_APP_PASSWORD="${POSTGRESQL_APP_PASSWORD}" \
   POSTGRESQL_DATA_DIR=/var/lib/postgresql/data \
   POSTGRESQL_RUN_DIR=/run/postgresql \
   POSTGRES_HOME=/var/lib/postgresql \
