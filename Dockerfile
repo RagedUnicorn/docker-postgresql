@@ -55,7 +55,7 @@ COPY docker-entrypoint.sh /
 
 RUN \
   chmod 755 /docker-entrypoint.sh && \
-  chmod 755 docker-healthcheck.sh
+  chmod 755 /docker-healthcheck.sh
 
 EXPOSE 5432
 
