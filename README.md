@@ -56,7 +56,7 @@ echo "app_user_password" | docker secret create com.ragedunicorn.postgresql.app_
 docker stack deploy --compose-file=docker-compose.stack.yml [stackname]
 ```
 
-For a production deployment a stack should be deployed. The secret will then be taken into account and postgresql will be setup accordingly. The new app user will be configured for external access to the database.
+For a production deployment a stack should be deployed. The secrets will then be taken into account and postgresql will be setup accordingly. The new app user will be configured for external access to the database.
 
 ## Dockery
 
