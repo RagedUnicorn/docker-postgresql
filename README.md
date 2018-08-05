@@ -98,6 +98,16 @@ Stopping the running container
 sh dockery/dstop.sh
 ```
 
+## Configuration
+
+#### Build Args
+
+The image allows for certain arguments being overridden by build args.
+
+`POSTGRESQL_USER, POSTGRESQL_GROUP, POSTGRESQL_APP_USER, POSTGRESQL_APP_PASSWORD`
+
+They all have a default value and don't have to be overridden. For details see the Dockerfile.
+
 #### Default user
 
 First time starting up the container a user based on the values of `POSTGRESQL_APP_USER` and `POSTGRESQL_APP_PASSWORD` environmental values is created. This user is also allowed to make external connections and can be used by other services to interact with the database. To modify the setup of this user have a look into `config/user.sql`.
