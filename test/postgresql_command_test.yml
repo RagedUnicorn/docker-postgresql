@@ -9,5 +9,5 @@ commandTests:
 - name: 'psql_client_version'
   command: "psql"
   args: ["-V"]
-  expectedOutput: ["psql \\(PostgreSQL\\) 10.4"]
+  expectedOutput: ["psql \\(PostgreSQL\\) 11.1"]
   exitCode: 0
