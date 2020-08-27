@@ -6,7 +6,7 @@ This image is intended to build a base for providing a database to an applicatio
 
 ## Version
 
-* PostgreSQL 11
+* PostgreSQL 12
 
 ## Using the image
 
