@@ -1,4 +1,4 @@
-FROM alpine:3.9.2
+FROM alpine:3.12.0
 
 LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gmail.com>"
 
@@ -16,8 +16,8 @@ ARG POSTGRESQL_APP_PASSWORD=app
 
 # software versions
 ENV \
-  POSTGRESQL_VERSION=11.1-r0 \
-  SU_EXEC_VERSION=0.2-r0
+  POSTGRESQL_VERSION=12.3-r2 \
+  SU_EXEC_VERSION=0.2-r1
 
 ENV \
   POSTGRESQL_USER="${POSTGRESQL_USER}" \
